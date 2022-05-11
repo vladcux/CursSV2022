@@ -17,7 +17,8 @@ console.log(calculate(7));
 let initialArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 primeArray = initialArray.filter((number) => {
-  for (var i = 2; i <= Math.sqrt(number); i++) {
+    if (number <= 1) return false;
+    for (let i = 2; i <= Math.sqrt(number); i++) {
     if (number % i === 0) return false;
   }
   return true;
@@ -31,12 +32,15 @@ console.log(primeArray);
 
 initialArray = [1, '1', 'salut', 2, 6, true, 'true'];
 
-function isString() {
-    return function(element) {
-        return Object(element) instanceof String;
-    }
+function getStrings(array) {
+    let result = [];
+    array.forEach(element => {
+        if (Object(element) instanceof String) {
+            result.push(element);
+        }     
+    });
+    return result;
 }
-function getStrings(array) { return array.filter(isString()) };
 
 console.log(getStrings(initialArray));
 
